@@ -1,0 +1,45 @@
+{% extends "tasks/base.html" %}
+
+{% block content %}
+<h2 style="text-align:center;">SuperAdmin Dashboard</h2>
+
+<h3>All Tasks</h3>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Created By</th>
+    <th>Assigned To</th>
+    <th>Description</th>
+    <th>Due Date</th>
+    <th>Status</th>
+    <th>Completion Report</th>
+    <th>Worked Hours</th>
+  </tr>
+  {% for task in tasks %}
+  <tr>
+    <td>{{ task.title }}</td>
+    <td>{{ task.created_by.username }}</td>
+    <td>{{ task.assigned_to.username }}</td>
+    <td>{{ task.description }}</td>
+    <td>{{ task.due_date }}</td>
+    <td>{{ task.status }}</td>
+    <td>{{ task.completion_report|default:"--" }}</td>
+    <td>{{ task.worked_hours|default:"--" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h3>Users & Roles</h3>
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Role</th>
+  </tr>
+  {% for profile in users %}
+  <tr>
+    <td>{{ profile.user.username }}</td>
+    <td>{{ profile.role }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

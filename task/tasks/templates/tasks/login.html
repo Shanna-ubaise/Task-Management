@@ -1,0 +1,25 @@
+{% extends "tasks/base.html" %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 80px auto; padding: 30px; background:white; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center;">
+    <h2 style="margin-bottom:20px;">Login</h2>
+    <form method="post" style="display:flex; flex-direction:column; gap:15px;">
+        {% csrf_token %}
+        <div style="text-align:left;">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+        </div>
+
+        <div style="text-align:left;">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+        </div>
+
+        <button type="submit" style="padding:10px; background-color:#f5576c; color:white; border:none; border-radius:5px; cursor:pointer;">Login</button>
+    </form>
+
+    {% if error %}
+        <p style="color:red; margin-top:10px;">{{ error }}</p>
+    {% endif %}
+</div>
+{% endblock %}

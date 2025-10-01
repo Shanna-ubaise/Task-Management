@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Management System</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #f093fb, #5774f5ff);
+      padding: 20px 30px;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    nav {
+      background-color: #fff;
+      padding: 10px 30px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #444;
+      margin-right: 15px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      font-weight: 600;
+    }
+
+    form textarea,
+    form input[type="number"] {
+      width: 100%;
+      margin-top: 5px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+
+    button {
+      background-color: #f5576c;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background-color: #d93c57;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h2 style="text-align:center;">📋 Task Management System</h2>
+</header>
+
+<nav style="display:flex; justify-content: space-between; align-items: center; padding:10px 30px; background-color:#fff; border-bottom:1px solid #ddd;">
+  <div>
+    <a href="{% url 'dashboard' %}">🏠 Home</a>
+  </div>
+  <div>
+    <a href="{% url 'logout' %}">🚪 Logout</a>
+  </div>
+</nav>
+
+
+<div class="container">
+  {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

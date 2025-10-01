@@ -1,0 +1,45 @@
+{% extends "tasks/base.html" %}
+
+{% block content %}
+<h2>🗂️ My Tasks</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Created By</th>
+      <th>Due Date</th>
+      <th>Status</th>
+      <th>Completion Report</th>
+      <th>Worked Hours</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in tasks %}
+    <tr>
+      <td>{{ task.title }}</td>
+      <td>{{ task.description }}</td>
+      <td>{{ task.created_by.username }}</td>
+      <td>{{ task.due_date }}</td>
+      <td>{{ task.status }}</td>
+      <td>{{ task.completion_report|default:"--" }}</td>
+      <td>{{ task.worked_hours|default:"--" }}</td>
+      <td>
+        {% if task.status != "Completed" %}
+        <form method="post" action="{% url 'task-complete' task.id %}">
+          {% csrf_token %}
+          <textarea name="completion_report" placeholder="Write report..." required></textarea>
+          <input type="number" name="worked_hours" step="0.1" placeholder="Hours worked" required>
+          <button type="submit">Mark Completed</button>
+        </form>
+        {% else %}
+        ✅ Completed
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
